@@ -9,7 +9,7 @@
 		"test": "KARMA_SINGLE_RUN=false karma start ./karma.conf.js",
 		"lint-staged": "lint-staged",
 		"precommit": "lint-staged",
-		"prepublishOnly": "rm -rf ./dist && yarn run lint && karma start ./karma.conf.js --single-run  && tsc -p ./ --outDir dist/",
+		"prepublishOnly": "rm -rf ./dist && yarn run lint && karma start ./karma.conf.js  && tsc -p ./ --outDir dist/",
 		"postcommit": "yarn run prepublishOnly",
 		"tslint-check": "tslint-config-prettier-check ./tslint.json"
 	},

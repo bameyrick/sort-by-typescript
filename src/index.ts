@@ -1,4 +1,22 @@
-export function sort(property: string, map?: Function): any {
+export function sortBy(...properties: Array<string | Function>): any {
+	return (obj1: any, obj2: any): number => {
+		const props = <string[]>properties.filter(prop => typeof prop === 'string');
+		const map = <Function>properties.filter(prop => typeof prop === 'function')[0];
+		let i = 0;
+		let result = 0;
+
+		const numberOfProperties = props.length;
+
+		while (result === 0 && i < numberOfProperties) {
+			result = sort(props[i], map)(obj1, obj2);
+			i++;
+		}
+
+		return result;
+	};
+}
+
+function sort(property: string, map?: Function): any {
 	let sortOrder = 1;
 
 	if (property[0] === '-') {
@@ -25,24 +43,6 @@ export function sort(property: string, map?: Function): any {
 		}
 
 		return result * sortOrder;
-	};
-}
-
-export function sortBy(...properties: Array<string | Function>): any {
-	return (obj1: any, obj2: any): number => {
-		const props = <string[]>properties.filter(prop => typeof prop === 'string');
-		const map = <Function>properties.filter(prop => typeof prop === 'function')[0];
-		let i = 0;
-		let result = 0;
-
-		const numberOfProperties = props.length;
-
-		while (result === 0 && i < numberOfProperties) {
-			result = sort(props[i], map)(obj1, obj2);
-			i++;
-		}
-
-		return result;
 	};
 }
 
