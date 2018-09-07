@@ -117,6 +117,34 @@ describe('sortBy(prop) ', () => {
 		// Assert
 		expect(toString(result)).toBe(toString(expected));
 	});
+
+	it('sorts an array case-insensitively by using ^ operator', () => {
+		// Arrange
+		const source = [
+			{ x: 'B', y: 2 },
+			{ x: 'a', y: 4 },
+			{ x: 'b', y: 1 },
+			{ x: 'C', y: 2 },
+			{ x: 'c', y: 2 },
+			{ x: 'C', y: 1 },
+			{ x: 'b', y: 3 },
+		];
+
+		const expected = [
+			{ x: 'a', y: 4 },
+			{ x: 'B', y: 2 },
+			{ x: 'b', y: 1 },
+			{ x: 'b', y: 3 },
+			{ x: 'C', y: 2 },
+			{ x: 'c', y: 2 },
+			{ x: 'C', y: 1 },
+		];
+
+		const result = source.sort(sortBy('x^'));
+
+		// Assert
+		expect(toString(result)).toBe(toString(expected));
+	});
 });
 
 describe('sortBy(prop, prop) ', () => {

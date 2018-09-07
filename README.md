@@ -228,11 +228,46 @@ customers.sort(sortBy('contactDetails.email'));
 ]
 */
 ```
+#### sortBy - case insensitive
+
+As we saw above, sorting the email addresses did not necessarily return the result we expected, because uppercase letters are sorted before lowecase letters. To combat this we can add a `^` to the end of our prop.
+
+```typescript
+customers.sort(sortBy('contactDetails.email^'));
+
+/* Result
+[
+	{
+		id: 1,
+		name: 'Alex',
+		age: 45,
+		contactDetails: {
+			email: 'alex@gmail.com',
+		},
+	},
+	{
+		id: 2,
+		name: 'Alex',
+		age: 20,
+		contactDetails: {
+			email: 'Alex@gmail.com',
+		},
+	},
+	{
+		id: 0,
+		name: 'Bob',
+		age: 33,
+		contactDetails: {
+			email: 'Bob@gmail.com',
+		},
+	},
+]
+*/
+```
 
 #### sortBy - passing in a function to modify values before sorting
-You can also pass in functions to modify our sort values before sorting.
-
-As we saw above, sorting the email addresses did not necessarily return the result we expected, because uppercase letters are sorted before lowecase letters. To combat this we can pass in a function to do a case-insensitive sort.
+You can also pass in functions to modify our sort values before sorting. 
+In this example we pass in our own function to do a case insensitive sort;
 
 ```typescript
 customers.sort(

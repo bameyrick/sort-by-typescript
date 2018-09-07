@@ -24,6 +24,13 @@ function sort(property: string, map?: Function): any {
 		property = property.substr(1);
 	}
 
+	if (property[property.length - 1] === '^') {
+		property = property.substr(0, property.length - 1);
+
+		map = function(_key: string, value: any): any {
+			return typeof value === 'string' ? value.toLowerCase() : value;
+		};
+	}
 	const apply =
 		map ||
 		function(_key: string, value: any): any {
