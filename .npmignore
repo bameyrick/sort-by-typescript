@@ -1,0 +1,17 @@
+*.log
+.DS_Store
+Thumbs.db
+automation/
+build/
+demo/
+dist/demo/
+dev-server/
+node_modules/
+src/
+.babelrc
+.editorconfig
+.gitignore
+gruntfile.js
+tsconfig.json
+tslint.json
+webpack.config.js

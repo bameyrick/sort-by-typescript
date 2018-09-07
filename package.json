@@ -1,0 +1,43 @@
+{
+	"name": "dynamic-sort",
+	"version": "1.0.0",
+	"main": "index.js",
+	"author": "Ben Meyrick <bameyrick@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"lint": "tslint src/*.ts",
+		"test": "KARMA_SINGLE_RUN=false karma start ./karma.conf.js",
+		"lint-staged": "lint-staged",
+		"precommit": "lint-staged",
+		"prepublishOnly": "rm -rf ./dist && yarn run lint && karma start ./karma.conf.js --single-run  && tsc -p ./ --outDir dist/",
+		"postcommit": "yarn run prepublishOnly",
+		"tslint-check": "tslint-config-prettier-check ./tslint.json"
+	},
+	"lint-staged": {
+		"*.ts": [
+			"tslint src/*.ts",
+			"karma start ./karma.conf.js",
+			"prettier --print-width 140 --use-tabs --single-quote --trailing-comma es5 --parser typescript --write",
+			"git add"
+		],
+		"*.json": ["prettier --print-width 140 --use-tabs --single-quote --trailing-comma es5 --parser json --write", "git add"],
+		"*.js": ["prettier --print-width 140 --use-tabs --single-quote --trailing-comma es5 --parser babylon --write", "git add"]
+	},
+	"devDependencies": {
+		"@types/jasmine": "^2.8.8",
+		"husky": "^0.14.3",
+		"jasmine-core": "^3.2.1",
+		"karma": "^3.0.0",
+		"karma-chrome-launcher": "^2.2.0",
+		"karma-cli": "^1.0.1",
+		"karma-coverage-istanbul-reporter": "^2.0.3",
+		"karma-jasmine": "^1.1.2",
+		"karma-jasmine-html-reporter": "^1.3.1",
+		"karma-typescript": "^3.0.13",
+		"lint-staged": "^7.2.2",
+		"prettier": "^1.14.2",
+		"tslint": "^5.11.0",
+		"tslint-plugin-prettier": "^1.3.0",
+		"typescript": "^3.0.3"
+	}
+}
