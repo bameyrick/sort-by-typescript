@@ -1,8 +1,15 @@
 {
-	"name": "dynamic-sort",
+	"name": "sort-by-typescript",
 	"version": "1.0.0",
-	"main": "index.js",
+	"description": "Sort objects by property names using native Array.sort() (TypeScript types included)",
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts",
 	"author": "Ben Meyrick <bameyrick@gmail.com>",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/bameyrick/sort-by-typescript.git"
+	},
+	"keywords": ["array", "object", "sort", "multiple", "properties", "key", "keys", "typescript", "types"],
 	"license": "MIT",
 	"scripts": {
 		"lint": "tslint src/*.ts",
