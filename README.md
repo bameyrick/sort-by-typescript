@@ -52,7 +52,7 @@ const customers = [
 ];
 ```
 
-#### sortBy(prop)
+## sortBy(prop)
 To sort by name in ascending order:
 ```typescript
 customers.sort(sortBy('name'));
@@ -122,7 +122,7 @@ customers.sort(sortBy('-age'));
 */
 ```
 
-#### sortBy(prop, prop)
+## sortBy(prop, prop)
 To sort by name then age ascending order:
 ```typescript
 customers.sort(sortBy('name', 'age'));
@@ -193,7 +193,7 @@ customers.sort(sortBy('-name', 'age'));
 */
 ```
 
-#### sortBy(prop.prop)
+## sortBy(prop.prop)
 To sort by nested prop: 
 _(Note: uppercase letters will be sorted before lowercase letters)_
 ```typescript
@@ -228,8 +228,8 @@ customers.sort(sortBy('contactDetails.email'));
 ]
 */
 ```
-#### sortBy - case insensitive
 
+## sortBy - case insensitive
 As we saw above, sorting the email addresses did not necessarily return the result we expected, because uppercase letters are sorted before lowecase letters. To combat this we can add a `^` to the end of our prop.
 
 ```typescript
@@ -265,7 +265,7 @@ customers.sort(sortBy('contactDetails.email^'));
 */
 ```
 
-#### sortBy - passing in a function to modify values before sorting
+## sortBy - passing in a function to modify values before sorting
 You can also pass in functions to modify our sort values before sorting. 
 In this example we pass in our own function to do a case insensitive sort;
 
