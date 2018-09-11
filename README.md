@@ -1,4 +1,4 @@
-#sort-by-typescript
+# sort-by-typescript
 
 ## Install
 You can install via npm or yarn.
