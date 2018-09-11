@@ -1,6 +1,6 @@
 {
 	"name": "sort-by-typescript",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Sort objects by property names using native Array.sort() (TypeScript types included)",
 	"main": "./dist/index.js",
 	"types": "./dist/index.d.ts",

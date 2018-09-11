@@ -18,7 +18,7 @@ yarn add sort-by-typescript
 ### Importing
 You can import using ES6 imports. If you are using typescript this package includes a typings file.
 ```typescript
-import { sortBy } 'sort-by-typescript';
+import { sortBy } from 'sort-by-typescript';
 ```
 
 ### Examples
