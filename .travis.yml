@@ -1,0 +1,24 @@
+language: node_js
+version: 1.0
+node_js:
+  - 12.18.3
+cache: yarn
+jobs:
+  include:
+    - stage: test
+      script: yarn test-single && codecov
+    - stage: npm-bundle
+      script: yarn build && npm version $TRAVIS_BRANCH --allow-same-version --allow-empty
+      deploy:
+        edge: true
+        provider: npm
+        email: bameyrick@gmail.com
+        api_token:
+          secure: E8r32lrgpjMOZpKa3gTl24/tLfcSx4CxtYRa0GktxsLEpheXnobpKugF3UV6c47OeNDYwyfDT/wcVa2u3QbTVvgFrtIPU4gPCvPP7l5XHcam3jpETrOqQ5izYZia2oFHLwpZUUpy/GZRW+CjrkxQGxclMwpFt50J2n2Kgsh1cwx4bPy4fos79Lcd34tLsQyeGPdY9sH69Y90gD6WJq/bU8z8M8We9HZUGn8cmScR1/9+Sow+Clf5XP9i/WI25p0JvHqpiRW6wCX3fNh/s8CTW6dlb+Z13MBK9W8qDC9cBHML/YgoEMJLMsVGjJgBKGIc1sMy9Cpuo9BE9BH8XIHS5NPOCS9EChUdrXkWt39NVnNEP4Gi1pYU1w3TAXEUG/sQWTql1WVJdn6KNG8Hno+D2BURxgRPkAMRHC3yCxWPMqJD6Q9HxEVBZavVlnUD2zMFXwvlEWx93mkROC7tlauv1PXeWcQU1Qq15V8uumUyq5urSlBw2pyV+kD7XWAIBHdRUdBXGKhDnsZhu67uWxFmVPR/0xlRXEnMQnAu9WzUIRHuoVOLKK3J3wy0hUBIy7iJiENG93sJDalK+yNV6yT8F3jlHOFZeTxuOhHDKXqRbfaLa85PahCUgLwlEUMtpwd6gTLrdqjRzKivcvmgh2Hsfk/SxvXULZPZu6el34/we0A=
+        on:
+          tags: true
+stages:
+  - name: test
+    if: tag IS NOT present
+  - name: npm-bundle
+    if: tag IS present
