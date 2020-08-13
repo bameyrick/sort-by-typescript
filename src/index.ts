@@ -1,7 +1,13 @@
-export function sortBy(...properties: Array<string | Function>): any {
+export type SortMappingFunction = (_key: string, value: any) => any;
+
+/**
+ * Sorts an array of items by a given property keys. {@link https://github.com/bameyrick/sort-by-typescript#readme | View documentation}
+ */
+export function sortBy(...properties: Array<string | SortMappingFunction>): (obj1: any, obj2: any) => number {
   return (obj1: any, obj2: any): number => {
-    const props = <string[]>properties.filter(prop => typeof prop === 'string');
-    const map = <Function>properties.filter(prop => typeof prop === 'function')[0];
+    const props = properties.filter(prop => typeof prop === 'string') as string[];
+    const map = properties.filter(prop => typeof prop === 'function')[0] as typeof Function;
+
     let i = 0;
     let result = 0;
 
@@ -16,7 +22,10 @@ export function sortBy(...properties: Array<string | Function>): any {
   };
 }
 
-function sort(property: string, map?: Function): any {
+/**
+ * Does the sort calculation for an item
+ */
+function sort(property: string, map?: SortMappingFunction): any {
   let sortOrder = 1;
 
   if (property[0] === '-') {
@@ -27,15 +36,16 @@ function sort(property: string, map?: Function): any {
   if (property[property.length - 1] === '^') {
     property = property.substr(0, property.length - 1);
 
-    map = function(_key: string, value: any): any {
-      return typeof value === 'string' ? value.toLowerCase() : value;
-    };
+    map = (_key: string, value: any): any => (typeof value === 'string' ? value.toLowerCase() : value);
   }
-  const apply =
-    map ||
-    function(_key: string, value: any): any {
-      return value;
-    };
+
+  let apply: SortMappingFunction;
+
+  if (map) {
+    apply = map;
+  } else {
+    apply = (_key: string, value: any): any => value;
+  }
 
   return (a: any, b: any): number => {
     let result: number = 0;
@@ -53,13 +63,16 @@ function sort(property: string, map?: Function): any {
   };
 }
 
-function objectPath(object: Object, path: string): any {
+/**
+ * Navigates to the part of the object using the path provided
+ */
+function objectPath(object: object, path: string): any {
   const pathParts = path.split('.');
 
   let result: any = object;
 
   pathParts.forEach(part => {
-    result = result[part];
+    result = result[part] || '';
   });
 
   return result;
