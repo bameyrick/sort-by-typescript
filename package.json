@@ -25,8 +25,9 @@
   "scripts": {
     "lint": "tslint src/*.ts",
     "test": "KARMA_SINGLE_RUN=false karma start ./karma.conf.js",
+    "test-single": "karma start ./karma.conf.js",
     "lint-staged": "lint-staged",
-    "build": "yarn tidy-clean && yarn lint && karma start ./karma.conf.js && tsc -p ./ --outDir dist/",
+    "build": "yarn tidy-clean && yarn lint && yarn test-single && tsc -p ./ --outDir dist/",
     "tidy-clean": "rm -rf dist coverage",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
@@ -34,7 +35,7 @@
     "*.ts": [
       "prettier --print-width 140 --single-quote --arrow-parens avoid --trailing-comma  es5 --parser typescript --write",
       "tslint --project tsconfig.lint.json",
-      "karma start ./karma.conf.js"
+      "yarn test-single"
     ],
     "*.js": [
       "prettier --print-width 140 --single-quote --arrow-parens avoid --trailing-comma es5 --parser babel --write"
