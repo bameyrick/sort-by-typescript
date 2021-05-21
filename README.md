@@ -5,6 +5,21 @@
 [![codecov](https://codecov.io/gh/bameyrick/sort-by-typescript/branch/master/graph/badge.svg)](https://codecov.io/gh/bameyrick/sort-by-typescript)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8b6d49c17ee647c6a356318c3d8da6b9)](https://www.codacy.com/manual/bameyrick/sort-by-typescript)
 
+- [sort-by-typescript](#sort-by-typescript)
+  - [Install](#install)
+    - [npm](#npm)
+    - [yarn](#yarn)
+  - [Usage](#usage)
+    - [Importing](#importing)
+    - [Examples](#examples)
+  - [sortBy(prop)](#sortbyprop)
+  - [sortBy(prop, prop)](#sortbyprop-prop)
+  - [sortBy(prop.prop)](#sortbypropprop)
+  - [sortBy - case insensitive](#sortby---case-insensitive)
+  - [sortBy - passing in a function to modify values before sorting](#sortby---passing-in-a-function-to-modify-values-before-sorting)
+  - [sortBy() - no property](#sortby---no-property)
+  - [sortBy() - no property - descending](#sortby---no-property---descending)
+
 ## Install
 
 You can install via npm or yarn.
@@ -73,30 +88,30 @@ customers.sort(sortBy('name'));
 
 /* Result
 [
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },
 ]
 */
 ```
@@ -108,30 +123,30 @@ customers.sort(sortBy('-age'));
 
 /* Result
 [
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
 ]
 */
 ```
@@ -145,31 +160,31 @@ customers.sort(sortBy('name', 'age'));
 
 /* Result
 [
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},
-	
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},	
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },
+  
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },  
 ]
 */
 ```
@@ -181,30 +196,30 @@ customers.sort(sortBy('-name', 'age'));
 
 /* Result
 [
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},	
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },  
 ]
 */
 ```
@@ -219,30 +234,30 @@ customers.sort(sortBy('contactDetails.email'));
 
 /* Result
 [
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },
 ]
 */
 ```
@@ -256,30 +271,30 @@ customers.sort(sortBy('contactDetails.email^'));
 
 /* Result
 [
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },
 ]
 */
 ```
@@ -302,30 +317,58 @@ customers.sort(
 
 /* Result
 [
-	{
-		id: 1,
-		name: 'Alex',
-		age: 45,
-		contactDetails: {
-			email: 'alex@gmail.com',
-		},
-	},
-	{
-		id: 2,
-		name: 'Alex',
-		age: 20,
-		contactDetails: {
-			email: 'Alex@gmail.com',
-		},
-	},
-	{
-		id: 0,
-		name: 'Bob',
-		age: 33,
-		contactDetails: {
-			email: 'Bob@gmail.com',
-		},
-	},
+  {
+    id: 1,
+    name: 'Alex',
+    age: 45,
+    contactDetails: {
+      email: 'alex@gmail.com',
+    },
+  },
+  {
+    id: 2,
+    name: 'Alex',
+    age: 20,
+    contactDetails: {
+      email: 'Alex@gmail.com',
+    },
+  },
+  {
+    id: 0,
+    name: 'Bob',
+    age: 33,
+    contactDetails: {
+      email: 'Bob@gmail.com',
+    },
+  },
 ]
+*/
+```
+
+## sortBy() - no property
+
+You can also sort an array of strings case insensitively by providing no properties to the sortBy function
+
+```typescript
+const strings: string[] = ['Orange', 'duck', 'Car', 'angle'];
+
+strings.sort(sortBy());
+
+/* Result
+    ['angle', 'Car', 'duck', 'Orange']
+*/
+```
+
+## sortBy() - no property - descending
+
+You can also sort an array of strings case insensitively in reverse order by providing just the `-` modifier to the sortBy function
+
+```typescript
+const strings: string[] = ['Orange', 'duck', 'Car', 'angle'];
+
+strings.sort(sortBy('-'));
+
+/* Result
+    ['Orange', 'duck', 'Car', 'angle']
 */
 ```
