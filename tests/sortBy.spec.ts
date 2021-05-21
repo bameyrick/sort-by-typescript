@@ -426,3 +426,29 @@ describe('sortBy(prop, prop.prop) ', () => {
     expect(toString(result)).toBe(toString(expected));
   });
 });
+
+describe('sortBy()', () => {
+  it('sorts an array of strings (case insensitive)', () => {
+    // Arrange
+    const source = ['b', 'a', 'b', 'c', 'c', 'c', 'B'];
+
+    const expected = ['a', 'b', 'b', 'B', 'c', 'c', 'c'];
+
+    const result = source.sort(sortBy());
+
+    // Assert
+    expect(result).toEqual(expected);
+  });
+
+  it('sorts an array of strings (case insensitive, descending)', () => {
+    // Arrange
+    const source = ['b', 'a', 'b', 'c', 'c', 'c', 'B'];
+
+    const expected = ['c', 'c', 'c', 'b', 'b', 'B', 'a'];
+
+    const result = source.sort(sortBy('-'));
+
+    // Assert
+    expect(result).toEqual(expected);
+  });
+});

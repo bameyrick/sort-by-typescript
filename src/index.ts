@@ -5,11 +5,17 @@ export type SortMappingFunction = (_key: string, value: any) => any;
  */
 export function sortBy(...properties: Array<string | SortMappingFunction>): (obj1: any, obj2: any) => number {
   return (obj1: any, obj2: any): number => {
-    const props = properties.filter(prop => typeof prop === 'string') as string[];
+    let props = properties.filter(prop => typeof prop === 'string') as string[];
     const map = properties.filter(prop => typeof prop === 'function')[0] as typeof Function;
 
     let i = 0;
     let result = 0;
+
+    if (props.length) {
+      props = props.map(prop => (prop.replace('-', '').length ? prop : '-^'));
+    } else {
+      props = ['^'];
+    }
 
     const numberOfProperties = props.length;
 
@@ -50,8 +56,8 @@ function sort(property: string, map?: SortMappingFunction): any {
   return (a: any, b: any): number => {
     let result: number = 0;
 
-    const mappedA = apply(property, objectPath(a, property));
-    const mappedB = apply(property, objectPath(b, property));
+    const mappedA = apply(property, property ? objectPath(a, property) : a);
+    const mappedB = apply(property, property ? objectPath(b, property) : b);
 
     if (mappedA < mappedB) {
       result = -1;
