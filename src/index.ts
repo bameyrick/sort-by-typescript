@@ -56,8 +56,8 @@ function sort(property: string, map?: SortMappingFunction): any {
   return (a: any, b: any): number => {
     let result: number = 0;
 
-    const mappedA = apply(property, property ? objectPath(a, property) : a);
-    const mappedB = apply(property, property ? objectPath(b, property) : b);
+    const mappedA = cast(apply(property, property ? objectPath(a, property) : a));
+    const mappedB = cast(apply(property, property ? objectPath(b, property) : b));
 
     if (mappedA < mappedB) {
       result = -1;
@@ -82,4 +82,16 @@ function objectPath(object: object, path: string): any {
   });
 
   return result;
+}
+
+/**
+ * Takes a value and casts it for more effective sorting.
+ */
+function cast(value: any): any {
+  // If the value is a number as a string, cast back to an actual number to sort
+  if (typeof value === 'string' && !!value.trim().length && !isNaN(value as any)) {
+    return parseFloat(value);
+  }
+
+  return value;
 }
