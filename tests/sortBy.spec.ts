@@ -1,22 +1,5 @@
 import { sortBy } from '../src';
 
-/**
- * Maps a result to a string
- */
-// tslint:disable-next-line: no-any
-function toString(array: any[]): string {
-  return array
-    .map(item => {
-      let result = `${item.x}-${item.y}`;
-
-      if (array[0].z) {
-        result = `${result}-${item.z.a}-${item.z.b}`;
-      }
-      return result;
-    })
-    .join('-');
-}
-
 describe('sortBy() ', () => {
   it('returns a function', () => {
     // Arrange
@@ -61,7 +44,7 @@ describe('sortBy(prop) ', () => {
     const result = source.sort(sortBy('x'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by a property in reverse', () => {
@@ -95,7 +78,7 @@ describe('sortBy(prop) ', () => {
     const result = source.sort(sortBy('-x'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by a property in reverse (number)', () => {
@@ -129,7 +112,7 @@ describe('sortBy(prop) ', () => {
     const result = source.sort(sortBy('-y^'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array case-insensitively by applying a function', () => {
@@ -165,7 +148,7 @@ describe('sortBy(prop) ', () => {
     );
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array case-insensitively by using ^ operator', () => {
@@ -193,7 +176,7 @@ describe('sortBy(prop) ', () => {
     const result = source.sort(sortBy('x^'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 });
 
@@ -223,7 +206,7 @@ describe('sortBy(prop, prop) ', () => {
     const result = source.sort(sortBy('x', 'y'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by multiple properties (descending, ascending)', () => {
@@ -251,7 +234,7 @@ describe('sortBy(prop, prop) ', () => {
     const result = source.sort(sortBy('-x', 'y'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by multiple properties (ascending, descending)', () => {
@@ -279,7 +262,7 @@ describe('sortBy(prop, prop) ', () => {
     const result = source.sort(sortBy('x', '-y'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by multiple properties (descending, descending)', () => {
@@ -307,7 +290,7 @@ describe('sortBy(prop, prop) ', () => {
     const result = source.sort(sortBy('-x', '-y'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 });
 
@@ -337,7 +320,7 @@ describe('sortBy(prop.prop) ', () => {
     const result = source.sort(sortBy('z.a'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by a nested property descending', () => {
@@ -365,7 +348,7 @@ describe('sortBy(prop.prop) ', () => {
     const result = source.sort(sortBy('-z.a'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 });
 
@@ -395,7 +378,7 @@ describe('sortBy(prop, prop.prop) ', () => {
     const result = source.sort(sortBy('y', 'z.a'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 
   it('sorts an array of objects by a property and a nested property (descending, descending)', () => {
@@ -423,7 +406,7 @@ describe('sortBy(prop, prop.prop) ', () => {
     const result = source.sort(sortBy('-z.b', '-x'));
 
     // Assert
-    expect(toString(result)).toBe(toString(expected));
+    expect(result).toEqual(expected);
   });
 });
 
@@ -447,6 +430,20 @@ describe('sortBy()', () => {
     const expected = ['c', 'c', 'c', 'b', 'b', 'B', 'a'];
 
     const result = source.sort(sortBy('-'));
+
+    // Assert
+    expect(result).toEqual(expected);
+  });
+
+  it('sorts an array of numbers as strings', () => {
+    // Arrange
+    const source = ['4', '312', '21', '1', '3', '30', '2.2'];
+
+    const expected = ['1', '2.2', '3', '4', '21', '30', '312'];
+
+    const result = source.sort(sortBy());
+
+    console.log(result);
 
     // Assert
     expect(result).toEqual(expected);
