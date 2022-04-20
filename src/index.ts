@@ -59,7 +59,9 @@ function sort(property: string, map?: SortMappingFunction): any {
     const mappedA = cast(apply(property, property ? objectPath(a, property) : a));
     const mappedB = cast(apply(property, property ? objectPath(b, property) : b));
 
-    if (mappedA < mappedB) {
+    if (typeof mappedA === 'string') {
+      result = mappedA.localeCompare(mappedB);
+    } else if (mappedA < mappedB) {
       result = -1;
     } else if (mappedA > mappedB) {
       result = 1;
