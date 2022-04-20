@@ -188,6 +188,42 @@ describe('sortBy(prop) ', () => {
     // Assert
     expect(result).toEqual(expected);
   });
+
+  it('sorts an array of objects by a property (negative numbers)', () => {
+    // Arrange
+    const source = [
+      { x: 'b', y: -2 },
+      { x: 'a', y: -0 },
+      { x: 'b', y: -2 },
+      { x: 'c', y: -3 },
+      { x: 'c', y: -4 },
+      { x: 'c', y: -6 },
+      { x: 'b', y: -8 },
+      { x: '', y: -7 },
+      { x: 'å', y: -8 },
+      { x: undefined, y: -6 },
+      { x: null, y: -5 },
+    ];
+
+    const expected = [
+      { x: 'b', y: -8 },
+      { x: 'å', y: -8 },
+      { x: '', y: -7 },
+      { x: 'c', y: -6 },
+      { x: undefined, y: -6 },
+      { x: null, y: -5 },
+      { x: 'c', y: -4 },
+      { x: 'c', y: -3 },
+      { x: 'b', y: -2 },
+      { x: 'b', y: -2 },
+      { x: 'a', y: -0 },
+    ];
+
+    const result = source.sort(sortBy('y'));
+
+    // Assert
+    expect(result).toEqual(expected);
+  });
 });
 
 describe('sortBy(prop, prop) ', () => {
@@ -468,6 +504,30 @@ describe('sortBy()', () => {
     const expected = ['1', '2.2', '3', '4', '21', '30', '312'];
 
     const result = source.sort(sortBy());
+
+    // Assert
+    expect(result).toEqual(expected);
+  });
+
+  it('sorts an array of negative numbers', () => {
+    // Arrange
+    const source = [-2, -0, -2, -4, -3, -5, -6];
+
+    const expected = [-6, -5, -4, -3, -2, -2, -0];
+
+    const result = source.sort(sortBy());
+
+    // Assert
+    expect(result).toEqual(expected);
+  });
+
+  it('sorts an array of negative numbers descending', () => {
+    // Arrange
+    const source = [-2, -0, -2, -4, -3, -5, -6];
+
+    const expected = [-0, -2, -2, -3, -4, -5, -6];
+
+    const result = source.sort(sortBy('-'));
 
     // Assert
     expect(result).toEqual(expected);

@@ -80,7 +80,7 @@ function objectPath(object: object, path: string): any {
   let result: any = object;
 
   pathParts.forEach(part => {
-    result = result[part] || '';
+    result = isNullOrUndefined(result[part]) ? '' : result[part];
   });
 
   return result;
@@ -96,4 +96,8 @@ function cast(value: any): any {
   }
 
   return value;
+}
+
+function isNullOrUndefined(value: any): boolean {
+  return value === null || value === undefined;
 }
