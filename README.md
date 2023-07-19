@@ -1,7 +1,7 @@
 # sort-by-typescript
 
 [![GitHub release](https://img.shields.io/github/release/bameyrick/sort-by-typescript.svg)](https://github.com/bameyrick/sort-by-typescript/releases)
-[![Travis tests](https://img.shields.io/travis/bameyrick/sort-by-typescript.svg)](https://travis-ci.org/bameyrick/sort-by-typescript)
+[![Tests](https://github.com/bameyrick/sort-by-typescript/actions/workflows/tests.yml/badge.svg)](https://github.com/bameyrick/sort-by-typescript/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/bameyrick/sort-by-typescript/branch/master/graph/badge.svg)](https://codecov.io/gh/bameyrick/sort-by-typescript)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=bameyrick_sort-by-typescript&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=bameyrick_sort-by-typescript)
 [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=bameyrick_sort-by-typescript&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=bameyrick_sort-by-typescript)
