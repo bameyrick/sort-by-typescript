@@ -25,9 +25,8 @@
   "scripts": {
     "lint": "eslint {src,tests}/**/* --ext .ts --ext .js",
     "test": "jest --coverage",
-    "test-single": "karma start ./karma.conf.js",
     "lint-staged": "lint-staged",
-    "build": "yarn tidy-clean && yarn lint && yarn test-single && tsc -p ./ --outDir dist/",
+    "build": "tsc -p ./ --outDir dist/",
     "tidy-clean": "rm -rf dist coverage",
     "tslint-check": "tslint-config-prettier-check ./tslint.json"
   },
