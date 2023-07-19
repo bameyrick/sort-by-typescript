@@ -26,9 +26,8 @@
     "lint": "eslint {src,tests}/**/* --ext .ts --ext .js",
     "test": "jest --coverage",
     "lint-staged": "lint-staged",
-    "build": "tsc -p ./ --outDir dist/",
-    "tidy-clean": "rm -rf dist coverage",
-    "tslint-check": "tslint-config-prettier-check ./tslint.json"
+    "build": "tsc -p ./tsconfig.build.json --outDir dist/",
+    "tidy-clean": "rm -rf dist coverage"
   },
   "lint-staged": {
     "*.ts": [
